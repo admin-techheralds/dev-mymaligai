@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    >
+
+    <ImageView
+        android:id="@+id/itemImg"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:layout_marginRight="10dp"
+        android:background="#ccc" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apples"
+            android:textStyle="bold"
+            android:textColor="#222"
+            android:textSize="18dp"
+            />
+
+        <Spinner
+            android:id="@+id/itemQunatitySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="1">
+            <TableRow>
+                <TextView
+                    android:id="@+id/itemPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textStyle="bold"
+                    />
+
+                <Button
+                    android:id="@+id/itemBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="right"
+                    android:padding="10dp"
+                    android:text="Add to cart"
+                    android:background="#008577"
+                    android:textColor="#ffffff"
+                    />
+
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_demands_list"
+            android:icon="@drawable/demands_list"
+            android:title="Demands List" />
+        <item
+            android:id="@+id/nav_demands_report"
+            android:icon="@drawable/demand_report"
+            android:title="Demands Report" />
+        <item
+            android:id="@+id/nav_manage_consumers"
+            android:icon="@drawable/manage_consumers"
+            android:title="Manage Customers" />
+        <item
+            android:id="@+id/nav_my_profile"
+            android:icon="@drawable/my_profile"
+            android:title="My Profile" />
+    </group>
+</menu>

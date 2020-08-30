@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_demands_list">
+
+    <fragment
+        android:id="@+id/nav_demands_list"
+        android:name="com.techheralds.mymaligai.supplier.ui.demands_list.DemandsListFragment"
+        android:label="Demands List"
+        tools:layout="@layout/fragment_demands_list" />
+
+    <fragment
+        android:id="@+id/nav_demands_report"
+        android:name="com.techheralds.mymaligai.supplier.ui.demands_report.DemandsReportFragment"
+        android:label="Demands Report"
+        tools:layout="@layout/fragment_demands_report" />
+
+    <fragment
+        android:id="@+id/nav_manage_consumers"
+        android:name="com.techheralds.mymaligai.supplier.ui.manage_consumers.ManageConsumersFragment"
+        android:label="Manage Customers"
+        tools:layout="@layout/fragment_manage_consumers" />
+
+    <fragment
+        android:id="@+id/nav_my_profile"
+        android:name="com.techheralds.mymaligai.supplier.ui.my_profile.MyProfileFragment"
+        android:label="My Profile"
+        tools:layout="@layout/fragment_my_profile" />
+
+</navigation>

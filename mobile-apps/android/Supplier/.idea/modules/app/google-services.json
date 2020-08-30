@@ -1,0 +1,146 @@
+{
+  "project_info": {
+    "project_number": "939381411742",
+    "firebase_url": "https://supplier-customer.firebaseio.com",
+    "project_id": "supplier-customer",
+    "storage_bucket": "supplier-customer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939381411742:android:5dbcc1ce5cf8b3d83b508f",
+        "android_client_info": {
+          "package_name": "com.techheralds.mymaligai.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939381411742-3rar8l5pe0e6fstqls9q0kvo86u8elsr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techheralds.mymaligai.admin",
+            "certificate_hash": "15d8aa0b7dcac381a1d7f42babd9626b584cc2f8"
+          }
+        },
+        {
+          "client_id": "939381411742-0n53c48a22b52q86q2hcj8h4gsaece4d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techheralds.mymaligai.admin",
+            "certificate_hash": "39ce37177617feebf271eace4d590c00d5ddd474"
+          }
+        },
+        {
+          "client_id": "939381411742-363amsrp93bbnlr2lui87u0200p3vlo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlbTdaP_VvM2DSqZzCJaemv2pdqr1NOo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939381411742-363amsrp93bbnlr2lui87u0200p3vlo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939381411742:android:9f316417491a05443b508f",
+        "android_client_info": {
+          "package_name": "com.techheralds.mymaligai.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939381411742-28buep1gjdb8ahcehbsbu911j1ln80bd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techheralds.mymaligai.customer",
+            "certificate_hash": "15d8aa0b7dcac381a1d7f42babd9626b584cc2f8"
+          }
+        },
+        {
+          "client_id": "939381411742-fmctlrvcslrfmb5rngg6hbiiqundbajo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techheralds.mymaligai.customer",
+            "certificate_hash": "39ce37177617feebf271eace4d590c00d5ddd474"
+          }
+        },
+        {
+          "client_id": "939381411742-363amsrp93bbnlr2lui87u0200p3vlo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlbTdaP_VvM2DSqZzCJaemv2pdqr1NOo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939381411742-363amsrp93bbnlr2lui87u0200p3vlo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939381411742:android:cfcdda0eca4eb75b3b508f",
+        "android_client_info": {
+          "package_name": "com.techheralds.mymaligai.supplier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939381411742-ehnvquq5pbqji46asa1andgu4jkebtvo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techheralds.mymaligai.supplier",
+            "certificate_hash": "15d8aa0b7dcac381a1d7f42babd9626b584cc2f8"
+          }
+        },
+        {
+          "client_id": "939381411742-5nrrbr1e3f6no1sft6bfl458611jihpf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techheralds.mymaligai.supplier",
+            "certificate_hash": "39ce37177617feebf271eace4d590c00d5ddd474"
+          }
+        },
+        {
+          "client_id": "939381411742-363amsrp93bbnlr2lui87u0200p3vlo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlbTdaP_VvM2DSqZzCJaemv2pdqr1NOo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939381411742-363amsrp93bbnlr2lui87u0200p3vlo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

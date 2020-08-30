@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select the target date to filter demands"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/dateSelectIp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:hint="Select Date"
+        tools:ignore="Deprecated" />
+
+
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:textStyle="bold"
+                android:text="Item Name" />
+
+            <TextView
+                android:gravity="center"
+                android:padding="3dip"
+                android:textStyle="bold"
+                android:text="Quantity Demanded" />
+        </TableRow>
+
+    </TableLayout>
+
+    <ListView
+        android:id="@+id/demandsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
+
+    <TextView
+        android:id="@+id/noDemandsText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="You have no demands"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+</LinearLayout>

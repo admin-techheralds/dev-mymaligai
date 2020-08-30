@@ -1,0 +1,2 @@
+SUPPLIERNAME=Supplier Name
+SUPPLIERLOGO=https://www.supplier.logo
