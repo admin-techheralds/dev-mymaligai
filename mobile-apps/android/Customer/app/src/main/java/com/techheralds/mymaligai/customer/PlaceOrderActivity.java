@@ -683,9 +683,13 @@ public class PlaceOrderActivity extends AppCompatActivity {
                 final String[] currSpinnerValue = {unitsArr[inventories.get(position).getQuantity_type()].get(0)};
                 final double[] currItemPrice = {0};
 
-                Picasso.with(PlaceOrderActivity.this).load(inventories.get(position).getImg()).into(itemImg);
+                if(inventories.get(position).getImg() != null){
+                    if (!inventories.get(position).getImg().equals("")) {
+                        Picasso.with(PlaceOrderActivity.this).load(inventories.get(position).getImg()).into(itemImg);
+                    }
+                }
 
-                itemName.setText(inventories.get(position).getName());
+                itemName.setText(capitalize(inventories.get(position).getName()));
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(PlaceOrderActivity.this, R.layout.support_simple_spinner_dropdown_item, unitsArr[inventories.get(position).getQuantity_type()]);
                 qunatitySpinner.setAdapter(adapter);
@@ -850,14 +854,15 @@ public class PlaceOrderActivity extends AppCompatActivity {
             TextView itemQuantity = view.findViewById(R.id.itemQuantity);
             ImageView itemImg = view.findViewById(R.id.itemImg);
 
-
-            if (!itemImg.equals("")) {
-                Picasso.with(PlaceOrderActivity.this).load(items.get(position).get("img").toString()).into(itemImg);
+            if (items.get(position).get("img") != null) {
+                if (!items.get(position).get("img").equals("")) {
+                    Picasso.with(PlaceOrderActivity.this).load(items.get(position).get("img").toString()).into(itemImg);
+                }
             }
             NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
             double price = ((double) items.get(position).get("price"));
             String moneyString = formatter.format(price);
-            itemName.setText(items.get(position).get("name").toString());
+            itemName.setText(capitalize(items.get(position).get("name").toString()));
             itemQuantity.setText(items.get(position).get("quantity").toString() + " - MRP: " + moneyString);
 
             return view;

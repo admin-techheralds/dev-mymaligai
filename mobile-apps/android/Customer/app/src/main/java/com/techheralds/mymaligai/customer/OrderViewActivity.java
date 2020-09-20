@@ -251,10 +251,13 @@ public class OrderViewActivity extends AppCompatActivity {
             TextView itemQuantity = view.findViewById(R.id.itemQuantity);
             ImageView itemImg = view.findViewById(R.id.itemImg);
 
-            if (!itemImg.equals("")) {
-                Picasso.with(OrderViewActivity.this).load(items.get(position).get("img").toString()).into(itemImg);
+            if (items.get(position).get("img") != null) {
+                if (!items.get(position).get("img").equals("")) {
+                    Picasso.with(OrderViewActivity.this).load(items.get(position).get("img").toString()).into(itemImg);
+                }
             }
-            itemName.setText(items.get(position).get("name").toString());
+
+            itemName.setText(capitalize(items.get(position).get("name").toString()));
             NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
             double price;
             if (items.get(position).get("price").getClass().getSimpleName().equalsIgnoreCase("long")) {
