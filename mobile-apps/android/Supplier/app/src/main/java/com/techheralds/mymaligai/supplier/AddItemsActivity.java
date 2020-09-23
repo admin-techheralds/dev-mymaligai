@@ -435,7 +435,7 @@ public class AddItemsActivity extends AppCompatActivity {
                 TextView subTitle = view.findViewById(R.id.itemQuantity);
                 ImageView image = view.findViewById(R.id.itemImg);
 
-                title.setText(inventories.get(position).getName());
+                title.setText(capitalize(inventories.get(position).getName()));
 
                 int quantityType = inventories.get(position).getQuantity_type();
                 String itemUnitType = "";
@@ -456,8 +456,10 @@ public class AddItemsActivity extends AppCompatActivity {
                 }
                 subTitle.setText("Rs." + inventories.get(position).getPrice() + "(" + itemUnitType + ")");
 
-                if (!inventories.get(position).getImg().equals("")) {
-                    Picasso.with(AddItemsActivity.this).load(inventories.get(position).getImg()).into(image);
+                if(inventories.get(position).getImg() != null){
+                    if (!inventories.get(position).getImg().equals("")) {
+                        Picasso.with(AddItemsActivity.this).load(inventories.get(position).getImg()).into(image);
+                    }
                 }
 
                 final String finalItemUnitType = itemUnitType;
