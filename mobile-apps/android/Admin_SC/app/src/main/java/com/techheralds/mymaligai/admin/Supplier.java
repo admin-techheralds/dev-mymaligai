@@ -11,13 +11,14 @@ public class Supplier {
     Boolean status;
     Long dateCreated;
     String photo;
+    long supplier_id;
     String smsTemplate;
     Map<String, Object> build_details;
 
     public Supplier() {
     }
 
-    public Supplier(String name, String uid, String phoneNumber, String address, String location, Boolean status, Long dateCreated, String photo, String smsTemplate, Map<String, Object> build_details) {
+    public Supplier(String name, String uid, String phoneNumber, String address, String location, Boolean status, Long dateCreated, String photo, long supplier_id, String smsTemplate, Map<String, Object> build_details) {
         this.name = name;
         this.uid = uid;
         this.phoneNumber = phoneNumber;
@@ -26,6 +27,7 @@ public class Supplier {
         this.status = status;
         this.dateCreated = dateCreated;
         this.photo = photo;
+        this.supplier_id = supplier_id;
         this.smsTemplate = smsTemplate;
         this.build_details = build_details;
     }
@@ -92,6 +94,14 @@ public class Supplier {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public long getSupplier_id() {
+        return supplier_id;
+    }
+
+    public void setSupplier_id(long supplier_id) {
+        this.supplier_id = supplier_id;
     }
 
     public String getSmsTemplate() {

@@ -63,6 +63,22 @@
         android:textSize="16dp"
         android:textStyle="bold" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Mode of Payment"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="#222"
+        android:textSize="16dp"
+        android:text="Cash on Delivery"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/addBtn"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"

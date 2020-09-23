@@ -1,6 +1,7 @@
 package com.techheralds.mymaligai.admin;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -33,6 +34,8 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
@@ -249,22 +252,42 @@ public class AddSupplierActivity extends AppCompatActivity {
                                                 .setPhotoUri(Uri.parse(uri.toString()))
                                                 .build();
                                         user.updateProfile(profileUpdates);
+                                        firebaseDatabase.getReference().child("last_supplier_id").runTransaction(new Transaction.Handler() {
+                                            @Override
+                                            public Transaction.Result doTransaction(MutableData mutableData) {
+                                                Long value = mutableData.getValue(Long.class);
+                                                if (value == null) {
+                                                    mutableData.setValue(0);
+                                                }
+                                                else {
+                                                    Supplier supplier = new Supplier(nameValue, user.getUid(), user.getPhoneNumber(), addressValue, locationValue, true, user.getMetadata().getCreationTimestamp(), uri.toString(), value+1,smsTemplate, null);
+                                                    firebaseDatabase.getReference().child("suppliers/" + user.getUid()).setValue(supplier).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            progressDialog.dismiss();
+                                                            Toast.makeText(AddSupplierActivity.this, "Error occurred.Please try again", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            progressDialog.dismiss();
+                                                            Intent intent = new Intent(AddSupplierActivity.this, MainActivity.class);
+                                                            startActivity(intent);
+                                                        }
+                                                    });
+                                                    mutableData.setValue(value + 1);
+                                                }
 
-                                        Supplier supplier = new Supplier(nameValue, user.getUid(), user.getPhoneNumber(), addressValue, locationValue, true, user.getMetadata().getCreationTimestamp(), uri.toString(), smsTemplate, null);
-                                        firebaseDatabase.getReference().child("suppliers/" + user.getUid()).setValue(supplier).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                progressDialog.dismiss();
-                                                Toast.makeText(AddSupplierActivity.this, "Error occurred.Please try again", Toast.LENGTH_SHORT).show();
+                                                return Transaction.success(mutableData);
                                             }
-                                        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+
                                             @Override
-                                            public void onSuccess(Void aVoid) {
-                                                progressDialog.dismiss();
-                                                Intent intent = new Intent(AddSupplierActivity.this, MainActivity.class);
-                                                startActivity(intent);
+                                            public void onComplete(DatabaseError databaseError, boolean b,
+                                                                   DataSnapshot dataSnapshot) {
+                                                //  Log.d(TAG, "transaction:onComplete:" + databaseError);
                                             }
                                         });
+
                                     }
                                 });
                             }
@@ -292,21 +315,43 @@ public class AddSupplierActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast.makeText(AddSupplierActivity.this, "Phone Number already registered", Toast.LENGTH_SHORT).show();
                     } else {
-                        Supplier supplier = new Supplier(nameValue, user.getUid(), user.getPhoneNumber(), addressValue, locationValue, true, user.getMetadata().getCreationTimestamp(), "", smsTemplate, null);
-                        firebaseDatabase.getReference().child("suppliers/" + user.getUid()).setValue(supplier).addOnFailureListener(new OnFailureListener() {
+                        firebaseDatabase.getReference().child("last_supplier_id").runTransaction(new Transaction.Handler() {
                             @Override
-                            public void onFailure(@NonNull Exception e) {
-                                progressDialog.dismiss();
-                                Toast.makeText(AddSupplierActivity.this, "Error occurred.Please try again", Toast.LENGTH_SHORT).show();
+                            public Transaction.Result doTransaction(MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                }
+                                else {
+
+                                    Supplier supplier = new Supplier(nameValue, user.getUid(), user.getPhoneNumber(), addressValue, locationValue, true, user.getMetadata().getCreationTimestamp(), "",value+1, smsTemplate, null);
+                                    firebaseDatabase.getReference().child("suppliers/" + user.getUid()).setValue(supplier).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(AddSupplierActivity.this, "Error occurred.Please try again", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            progressDialog.dismiss();
+                                            Intent intent = new Intent(AddSupplierActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    mutableData.setValue(value + 1);
+                                }
+
+                                return Transaction.success(mutableData);
                             }
-                        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+
                             @Override
-                            public void onSuccess(Void aVoid) {
-                                progressDialog.dismiss();
-                                Intent intent = new Intent(AddSupplierActivity.this, MainActivity.class);
-                                startActivity(intent);
+                            public void onComplete(DatabaseError databaseError, boolean b,
+                                                   DataSnapshot dataSnapshot) {
+                                //  Log.d(TAG, "transaction:onComplete:" + databaseError);
                             }
                         });
+
                     }
                 }
 

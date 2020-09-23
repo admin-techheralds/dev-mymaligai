@@ -45,6 +45,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -284,7 +285,9 @@ public class AddItemsActivity extends AppCompatActivity {
                                         } else {
                                             sA3 = iA3.substring(0, 3);
                                         }
-                                        final String sku = "sku-" + firebaseUser.getUid().substring(0, 3) + "-" + currTag.substring(0, 3) + "-" + tempName + "-" + sA1 + "-" + sA2 + "-" + sA3;
+                                        String randomID = UUID.randomUUID().toString();
+                                        String[] splitted= randomID.split("-");
+                                        final String sku = "sku-" +splitted[1]+"-"+ firebaseUser.getUid().substring(0, 3) + "-" + currTag.substring(0, 3) + "-" + tempName + "-" + sA1 + "-" + sA2 + "-" + sA3;
                                         final String finalIA = iA1;
                                         final String finalIA1 = iA2;
                                         final String finalIA2 = iA3;
