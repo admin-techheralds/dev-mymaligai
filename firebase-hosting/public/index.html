@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MyMaligai</title>
+
+    <!-- pace loader -->
+    <link rel="stylesheet" href="./plugins/pace-progress/themes/blue/pace-theme-flat-top.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+
+    <!-- Ionicons -->
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="./plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="./css/adminlte.min.css" />
+    
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+
+    <style>
+      .login-page {
+        margin-top: 50px;
+      }
+      #errorview,
+      #otp_errorview {
+        padding: 8px;
+        text-align: center;       
+      }
+
+      #errorview #errormsg,
+      #otp_errorview #otp_errormsg {
+        color: red;
+        text-align: center;       
+        font-weight: bold;
+      }
+      .spinbtn {
+       font-size: 15px;
+     }
+    </style>
+  </head>
+
+  <body class="hold-transition login-page">
+    <div class="login-logo">
+      MyMaligai
+    </div>
+    
+    <!-- /.login-logo -->
+    <div class="card" id="signincard">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Supplier - Sign in</p>
+        <div class="input-group mb-2">
+          <input type="number" class="form-control" placeholder="Phonenumber" id="phone" value="9999999999">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fa fa-phone"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="errorview">
+          <div class="col-12">
+            <span id="errormsg"></span>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="button" id="signInBtn" class="btn btn-primary btn-block disable-on-click" >Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+
+    <!-- OTP Card -->
+    <div class="card" id="otpcard">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Supplier - Sign in</p>
+        <div class="row" >
+          <div class="col-12">
+            <span id="otpsent-msg"></span>
+          </div>
+        </div>
+        <div class="input-group mb-2">
+          <input type="number" class="form-control" id="otp" placeholder="OTP">
+        </div>
+        <div class="row" id="otp_errorview">
+          <div class="col-12">
+            <span id="otp_errormsg"></span>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-12">
+            <button id="otpSubmitBtn" type="button" class="btn btn-primary btn-block">Submit OTP</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+    <!-- pace loader -->
+    <script src="./plugins/pace-progress/pace.js"></script>
+
+    <script src="./plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap 4 -->
+    <script src="./plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AdminLTE App -->
+    <script src="./js/adminlte.min.js"></script>
+
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.16.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.16.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.16.0/firebase-database.js"></script>
+    <!-- <script defer src="/__/firebase/7.16.0/firebase-messaging.js"></script> -->
+    <script defer src="/__/firebase/7.16.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <script src="./js/common.js"></script>
+
+    <script>
+
+      var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/++[++^A-Za-z0-9+/=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
+
+      setLoadingBtn = function(id, text) {
+          $(id).html('<i class="spinbtn fas fa-3x fa-sync-alt fa-spin"></i>&nbsp;&nbsp;&nbsp;' + text + '...');
+      }
+
+      resetLoadingBtn = function(id, text) {
+          $(id).html(text);
+      }
+      $(document).ready(function() {
+
+        //firebase settings
+        firebase.auth().languageCode = 'en';
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('signInBtn', {
+          'size': 'invisible',
+          'callback': function(response) {
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
+            console.log("Captch response:" + JSON.stringify(response));
+            //signInNow();
+          }
+        });
+        recaptchaVerifier.render().then(function(widgetId) {
+          window.recaptchaWidgetId = widgetId;
+        });
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            console.log('User details from AUTH STATE:' + JSON.stringify(user))
+            window.location.href = 'inventories.html';
+          } else {
+          }
+        });
+
+        console.log("Ready..!!");
+        hideElement('#otpcard');
+        showElement('#signincard');
+        $('#signInBtn').prop('disabled', false);
+
+        hideError();
+
+        $('#signInBtn').click(function() {
+          signInNow();   
+        });
+        
+        $('#phone').keypress(function(key) {
+          var keycode = (event.keyCode ? event.keyCode : event.which);
+          if(keycode == '13'){
+            signInNow();
+          }
+        })
+
+        $('#otpSubmitBtn').click(function() {
+          submitOTP();    
+        })
+      });
+
+      hideError = function() {
+        hideElement('#errorview');
+        $('#errormsg').text("")
+      }
+
+      showError = function(err) {
+        showElement("#errorview");
+        $('#errormsg').text(err);
+      }
+
+      hideOTPError = function() {
+        hideElement('#otp_errorview');
+        $('#otp_errormsg').text("")
+      }
+
+      showOTPError = function(err) {
+        showElement("#otp_errorview");
+        $('#otp_errormsg').text(err);
+      }
+
+      signInNow = function() {
+        hideError();
+
+        var number = $.trim($('#phone').val())
+        if(number.length <= 0) {
+          showError("Phone number is invalid");
+          $('#phone').focus();
+          return;
+        }
+
+        if(number.startsWith('91')) {
+          number = '+' + number
+        }
+        if(number.length == 10) {
+          number = '+91' + number
+        }
+        setLoadingBtn("#signInBtn", "Sending OTP");
+        $.get('/checkSupplierExists?phonenumber=' + Base64.encode(number), function( data ) {
+
+          console.log('Response received is:' + JSON.stringify(data));
+          console.log('Signing with number:' + number)
+          firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier)
+          .then(function (confirmationResult) {
+            console.log('OTP has been sent. ');
+
+            window.confirmationResult = confirmationResult;
+            showOTPCard();
+          }).catch(function (error) {
+            console.log('Error while signing with given phone number. Error:' + error)
+            resetLoadingBtn("#signInBtn", "Sign In");
+            showError(error);
+            grecaptcha.reset(window.recaptchaWidgetId);
+          });
+      }).fail(function(err) {
+          console.log('Response received is:' + JSON.stringify(err));
+          resetLoadingBtn("#signInBtn", "Sign In");
+          showError("Supplier with given phone number doesn't exist");
+        })
+      }
+
+      showOTPCard = function() {
+        showElement('#otpcard');
+        hideElement('#signincard');
+        hideOTPError();
+        resetLoadingBtn("#otpSubmitBtn", "Submit OTP");
+
+        $('#otpsent-msg').html("OTP is sent to: <code>" + $.trim($('#phone').val() + '</code>'));
+
+      }
+
+      submitOTP = function() {
+        hideOTPError();
+
+        var otp = $.trim($('#otp').val())
+        if(otp.length <= 0) {
+          showOTPError("OTP number is invalid");
+          $('#otp').focus();
+          return;
+        }
+        setLoadingBtn("#otpSubmitBtn", "Submiting OTP");
+        confirmationResult.confirm(otp).then(function (result) {
+          // User signed in successfully.
+          var user = result.user;
+          console.log('User details after OTP:' + JSON.stringify(user))
+        }).catch(function (error) {
+          // User couldn't sign in (bad verification code?)
+          console.log('Error while verifying the OTP. Error:' + error)
+          resetLoadingBtn("#otpSubmitBtn", "Submit OTP");
+          showOTPError("Invalid OTP");
+          grecaptcha.reset(window.recaptchaWidgetId);
+        });
+      }
+    </script>
+  </body>
+</html>

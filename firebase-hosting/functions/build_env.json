@@ -1,0 +1,6 @@
+{
+    "project" : "supplier-customer",
+    "zone" : "us-central1-a",
+    "instance_id" : "",
+    "vm_name" :"mymaligai-build"
+}
