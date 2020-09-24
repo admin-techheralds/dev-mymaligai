@@ -44,6 +44,7 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.log4j.chainsaw.Main;
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,6 +43,7 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -285,9 +287,15 @@ public class AddItemsActivity extends AppCompatActivity {
                                         } else {
                                             sA3 = iA3.substring(0, 3);
                                         }
-                                        String randomID = UUID.randomUUID().toString();
-                                        String[] splitted= randomID.split("-");
-                                        final String sku = "sku-" +splitted[1]+"-"+ firebaseUser.getUid().substring(0, 3) + "-" + currTag.substring(0, 3) + "-" + tempName + "-" + sA1 + "-" + sA2 + "-" + sA3;
+
+                                        SecureRandom random = new SecureRandom();
+                                        int num = random.nextInt(100000);
+                                        String randomNum = String.format("%05d", num);
+
+                                        SharedPreferences sharedPreferences = getSharedPreferences("local", Context.MODE_PRIVATE);
+                                        long supplier_id = sharedPreferences.getLong("supplier_id", 0);
+
+                                        final String sku = "sku-" + randomNum + "-" + supplier_id + "-" + currTag.substring(0, 3) + "-" + tempName + "-" + sA1 + "-" + sA2 + "-" + sA3;
                                         final String finalIA = iA1;
                                         final String finalIA1 = iA2;
                                         final String finalIA2 = iA3;
@@ -459,7 +467,7 @@ public class AddItemsActivity extends AppCompatActivity {
                 }
                 subTitle.setText("Rs." + inventories.get(position).getPrice() + "(" + itemUnitType + ")");
 
-                if(inventories.get(position).getImg() != null){
+                if (inventories.get(position).getImg() != null) {
                     if (!inventories.get(position).getImg().equals("")) {
                         Picasso.with(AddItemsActivity.this).load(inventories.get(position).getImg()).into(image);
                     }

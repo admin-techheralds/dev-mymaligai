@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
 
         user = firebaseAuth.getCurrentUser();
 
-        if (user != null) {
+        if (user.getPhoneNumber() != null) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -202,6 +202,7 @@ public class LoginActivity extends AppCompatActivity {
                                     SharedPreferences sharedPreferences = getSharedPreferences("local", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString("smsTemplate", data.getSmsTemplate());
+                                    editor.putLong("supplier_id",data.getSupplier_id());
                                     editor.apply();
 
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()

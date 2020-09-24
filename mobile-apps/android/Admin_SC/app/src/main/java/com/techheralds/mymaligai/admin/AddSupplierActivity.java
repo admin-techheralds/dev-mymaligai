@@ -164,7 +164,7 @@ public class AddSupplierActivity extends AppCompatActivity {
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                        signInWithPhoneAuthCredential(phoneAuthCredential, null, bottomSheetDialog);
+                      //  signInWithPhoneAuthCredential(phoneAuthCredential, null, bottomSheetDialog);
                     }
 
                     @Override

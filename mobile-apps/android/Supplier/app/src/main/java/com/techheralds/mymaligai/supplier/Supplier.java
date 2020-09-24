@@ -10,8 +10,22 @@ public class Supplier {
     Long dateCreated;
     String photo;
     String smsTemplate;
+    long supplier_id;
 
     public Supplier() {
+    }
+
+    public Supplier(String name, String uid, String phoneNumber, String address, String location, Boolean status, Long dateCreated, String photo, String smsTemplate, long supplier_id) {
+        this.name = name;
+        this.uid = uid;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.location = location;
+        this.status = status;
+        this.dateCreated = dateCreated;
+        this.photo = photo;
+        this.smsTemplate = smsTemplate;
+        this.supplier_id = supplier_id;
     }
 
     public String getName() {
@@ -86,15 +100,11 @@ public class Supplier {
         this.smsTemplate = smsTemplate;
     }
 
-    public Supplier(String name, String uid, String phoneNumber, String address, String location, Boolean status, Long dateCreated, String photo, String smsTemplate) {
-        this.name = name;
-        this.uid = uid;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.location = location;
-        this.status = status;
-        this.dateCreated = dateCreated;
-        this.photo = photo;
-        this.smsTemplate = smsTemplate;
+    public long getSupplier_id() {
+        return supplier_id;
+    }
+
+    public void setSupplier_id(long supplier_id) {
+        this.supplier_id = supplier_id;
     }
 }
