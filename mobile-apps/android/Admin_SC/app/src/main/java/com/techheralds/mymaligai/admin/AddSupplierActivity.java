@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -164,7 +166,7 @@ public class AddSupplierActivity extends AppCompatActivity {
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                      //  signInWithPhoneAuthCredential(phoneAuthCredential, null, bottomSheetDialog);
+                        //  signInWithPhoneAuthCredential(phoneAuthCredential, null, bottomSheetDialog);
                     }
 
                     @Override
@@ -258,9 +260,8 @@ public class AddSupplierActivity extends AppCompatActivity {
                                                 Long value = mutableData.getValue(Long.class);
                                                 if (value == null) {
                                                     mutableData.setValue(0);
-                                                }
-                                                else {
-                                                    Supplier supplier = new Supplier(nameValue, user.getUid(), user.getPhoneNumber(), addressValue, locationValue, true, user.getMetadata().getCreationTimestamp(), uri.toString(), value+1,smsTemplate, null);
+                                                } else {
+                                                    Supplier supplier = new Supplier(nameValue, user.getUid(), user.getPhoneNumber(), addressValue, locationValue, true, user.getMetadata().getCreationTimestamp(), uri.toString(), value + 1, smsTemplate, null);
                                                     firebaseDatabase.getReference().child("suppliers/" + user.getUid()).setValue(supplier).addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
@@ -271,6 +272,7 @@ public class AddSupplierActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onSuccess(Void aVoid) {
                                                             progressDialog.dismiss();
+                                                            adminLogin();
                                                             Intent intent = new Intent(AddSupplierActivity.this, MainActivity.class);
                                                             startActivity(intent);
                                                         }
@@ -321,10 +323,9 @@ public class AddSupplierActivity extends AppCompatActivity {
                                 Long value = mutableData.getValue(Long.class);
                                 if (value == null) {
                                     mutableData.setValue(0);
-                                }
-                                else {
+                                } else {
 
-                                    Supplier supplier = new Supplier(nameValue, user.getUid(), user.getPhoneNumber(), addressValue, locationValue, true, user.getMetadata().getCreationTimestamp(), "",value+1, smsTemplate, null);
+                                    Supplier supplier = new Supplier(nameValue, user.getUid(), user.getPhoneNumber(), addressValue, locationValue, true, user.getMetadata().getCreationTimestamp(), "", value + 1, smsTemplate, null);
                                     firebaseDatabase.getReference().child("suppliers/" + user.getUid()).setValue(supplier).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
@@ -335,6 +336,7 @@ public class AddSupplierActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             progressDialog.dismiss();
+                                            adminLogin();
                                             Intent intent = new Intent(AddSupplierActivity.this, MainActivity.class);
                                             startActivity(intent);
                                         }
@@ -361,5 +363,18 @@ public class AddSupplierActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void adminLogin() {
+        SharedPreferences sharedPreferences = getSharedPreferences("local", Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", "");
+        String pwd = sharedPreferences.getString("pwd", "");
+
+        firebaseAuth.signInWithEmailAndPassword(email,pwd).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+              //  Toast.makeText(AddSupplierActivity.this, "loaded", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
