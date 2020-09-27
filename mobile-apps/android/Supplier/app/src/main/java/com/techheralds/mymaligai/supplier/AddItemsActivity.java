@@ -289,8 +289,8 @@ public class AddItemsActivity extends AppCompatActivity {
                                         }
 
                                         SecureRandom random = new SecureRandom();
-                                        int num = random.nextInt(100000);
-                                        String randomNum = String.format("%05d", num);
+                                        int num = random.nextInt(1000000);
+                                        String randomNum = String.format("%06d", num);
 
                                         SharedPreferences sharedPreferences = getSharedPreferences("local", Context.MODE_PRIVATE);
                                         long supplier_id = sharedPreferences.getLong("supplier_id", 0);
