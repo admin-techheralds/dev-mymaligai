@@ -39,6 +39,11 @@ import com.techheralds.mymaligai.supplier.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -344,6 +349,14 @@ public class MyProfileFragment extends Fragment {
 
                                 user.updateProfile(profileUpdates);
                                 Picasso.with(getContext()).load(url).into(dp);
+
+                               writeJsonData("supplierdetails.json",url.toString());
+                               SharedPreferences sharedPreferences = getContext().getSharedPreferences("local",Context.MODE_PRIVATE);
+                               SharedPreferences.Editor editor = sharedPreferences.edit();
+                               editor.putBoolean("isChange",true);
+                               editor.putString("url",url.toString());
+                               editor.apply();
+
                                 firebaseDatabase.getReference().child("suppliers/").child(user.getUid()).child("photo").setValue(url.toString()).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
@@ -502,4 +515,27 @@ public class MyProfileFragment extends Fragment {
             return view;
         }
     }
+
+    public void writeJsonData(String params, String url) {
+        try {
+            InputStream is = getContext().getAssets().open(params);
+
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String mResponse = new String(buffer);
+            JSONObject jsonObject = new JSONObject(mResponse);
+
+            if (!jsonObject.get("SUPPLIERLOGO").toString().equals("")) {
+                jsonObject.put("SUPPLIERLOGO",url);
+            }
+
+        } catch (IOException e) {
+            // Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (JSONException e) {
+            // Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

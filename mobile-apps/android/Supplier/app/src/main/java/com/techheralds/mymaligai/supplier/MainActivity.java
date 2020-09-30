@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    createAndSaveFile("appDetails", jsonObject.toString());
+                  //  createAndSaveFile("appDetails", jsonObject.toString());
 
                     handler.postDelayed(this, minutes);
                 }
