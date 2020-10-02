@@ -13,11 +13,12 @@ public class demand {
     String key;
     String address;
     double price;
+    String payment_mode;
 
     public demand() {
     }
 
-    public demand(String consumer, String supplier, String deliveryTime, String status, String timeCreated, ArrayList<Map<String, Object>> demandList, String key, String address, double price) {
+    public demand(String consumer, String supplier, String deliveryTime, String status, String timeCreated, ArrayList<Map<String, Object>> demandList, String key, String address, double price, String payment_mode) {
         this.consumer = consumer;
         this.supplier = supplier;
         this.deliveryTime = deliveryTime;
@@ -27,6 +28,7 @@ public class demand {
         this.key = key;
         this.address = address;
         this.price = price;
+        this.payment_mode = payment_mode;
     }
 
     public String getConsumer() {
@@ -99,5 +101,13 @@ public class demand {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getPayment_mode() {
+        return payment_mode;
+    }
+
+    public void setPayment_mode(String payment_mode) {
+        this.payment_mode = payment_mode;
     }
 }

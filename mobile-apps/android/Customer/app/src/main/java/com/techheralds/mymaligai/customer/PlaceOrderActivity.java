@@ -485,7 +485,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
                                     if (!deliveryAddress.equals("")) {
                                         final ProgressDialog progressDialog = ProgressDialog.show(PlaceOrderActivity.this, null, "Placing Order.Please Wait...");
                                         final String key = firebaseDatabase.getReference().child("demands").push().getKey();
-                                        demand newDemand = new demand(firebaseUser.getUid(), supplierUid, dTime, "placed", currTime, demandsArr, key,deliveryAddress, totalAmount);
+                                        demand newDemand = new demand(firebaseUser.getUid(), supplierUid, dTime, "placed", currTime, demandsArr, key,deliveryAddress, totalAmount,"cod");
                                         firebaseDatabase.getReference().child("demands/" + key).setValue(newDemand).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
