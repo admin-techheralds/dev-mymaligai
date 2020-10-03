@@ -138,7 +138,7 @@ public class InvitesFragment extends Fragment {
             firebaseDatabase.getReference().child("cInvites/" + firebaseUser.getPhoneNumber() + "/" + suppliers.get(position).getUid() + "/invited_date").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    date.setText("Inited on: "+dataSnapshot.getValue().toString());
+                    date.setText("Invited on: "+dataSnapshot.getValue().toString());
                 }
 
                 @Override
